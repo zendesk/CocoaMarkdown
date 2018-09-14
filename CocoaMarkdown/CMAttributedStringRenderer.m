@@ -16,6 +16,7 @@
 #import "CMTextAttributes.h"
 #import "CMNode.h"
 #import "CMParser.h"
+#import "CMDocument_Private.h"
 
 #import "Ono.h"
 
@@ -209,7 +210,11 @@
 
 - (void)parserFoundSoftBreak:(CMParser *)parser
 {
-    [self appendString:@" "];
+    if (_document.options & CMDocumentOptionsHardBreaks) {
+        [self appendString:@"\n"];
+    } else {
+        [self appendString:@" "];
+    }
 }
 
 - (void)parserFoundLineBreak:(CMParser *)parser

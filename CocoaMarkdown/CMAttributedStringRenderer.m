@@ -104,10 +104,7 @@
 - (void)parserDidStartParagraph:(CMParser *)parser
 {
     if (![self nodeIsInTightMode:parser.currentNode]) {
-        NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
-        paragraphStyle.paragraphSpacingBefore = 12;
-        
-        [_attributeStack push:CMDefaultAttributeRun(@{NSParagraphStyleAttributeName: paragraphStyle})];
+        [_attributeStack push:CMDefaultAttributeRun(_attributes.paragraphAttributes)];
     }
 }
 

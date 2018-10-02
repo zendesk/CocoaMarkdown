@@ -18,6 +18,13 @@ static NSDictionary * CMDefaultTextAttributes()
 #endif
 }
 
+static NSDictionary * CMDefaultParagraphAttributes()
+{
+    NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
+    paragraphStyle.paragraphSpacingBefore = 12;
+    return @{NSParagraphStyleAttributeName: paragraphStyle};
+}
+
 static NSDictionary * CMDefaultH1Attributes()
 {
 #if TARGET_OS_IPHONE
@@ -152,6 +159,7 @@ static NSDictionary * CMDefaultUnorderedSublistAttributes()
 {
     if ((self = [super init])) {
         _textAttributes = CMDefaultTextAttributes();
+        _paragraphAttributes = CMDefaultParagraphAttributes();
         _h1Attributes = CMDefaultH1Attributes();
         _h2Attributes = CMDefaultH2Attributes();
         _h3Attributes = CMDefaultH3Attributes();

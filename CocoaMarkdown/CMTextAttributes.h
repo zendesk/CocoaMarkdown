@@ -37,6 +37,13 @@
 @property (nonatomic) NSDictionary *textAttributes;
 
 /**
+ *  Attributes used to style paragraphs.
+ *
+ *  Defaults to using a paragraph style with before spacing of 12pt.
+ */
+@property (nonatomic) NSDictionary *paragraphAttributes;
+
+/**
  *  Attributes used to style level 1 headers.
  *
  *  On iOS, defaults to using the Dynamic Type font with style `UIFontTextStyleHeadline`

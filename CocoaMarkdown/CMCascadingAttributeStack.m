@@ -74,7 +74,14 @@ static CMFont * CMFontWithTraits(CMFontSymbolicTraits traits, CMFont *font)
                 attributes[NSFontAttributeName] = adjustedFont;
                 [allAttributes addEntriesFromDictionary:attributes];
             } else if (run.attributes != nil) {
-                [allAttributes addEntriesFromDictionary:run.attributes];
+                // Ignore all paragraph styles after the first.
+                if (allAttributes[NSParagraphStyleAttributeName] && run.attributes[NSParagraphStyleAttributeName]) {
+                    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:run.attributes];
+                    attributes[NSParagraphStyleAttributeName] = nil;
+                    [allAttributes addEntriesFromDictionary:attributes];
+                } else {
+                    [allAttributes addEntriesFromDictionary:run.attributes];
+                }
             }
         }
         _cascadedAttributes = allAttributes;

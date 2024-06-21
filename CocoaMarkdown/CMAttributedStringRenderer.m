@@ -345,8 +345,10 @@
 
 - (void)appendString:(NSString *)string
 {
-    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:_attributeStack.cascadedAttributes];
-    [_buffer appendAttributedString:attrString];
+    if (string) {
+        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:_attributeStack.cascadedAttributes];
+        [_buffer appendAttributedString:attrString];
+    }
 }
 
 - (void)appendHTMLElement:(CMHTMLElement *)element
